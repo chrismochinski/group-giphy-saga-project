@@ -67,3 +67,17 @@ You are given two router modules on the server with stubs for the routes you may
     - User should be able to edit an existing category
     - User should be able to delete/remove an existing category
 
+
+- [] get API key, setup env files (each)
+- [] import redux-logger (each)
+- [] import logger in index.js (ONE PERSON)
+- [] search form (Giphy search API)
+- [] get Giphy search endpoint 
+
+- [] check get route? complete?
+
+- [] POST route - component
+- [] POST route - index.js
+- [] PUT route - component
+- [] PUT route - index.js
+
