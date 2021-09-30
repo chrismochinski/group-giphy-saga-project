@@ -69,7 +69,7 @@ You are given two router modules on the server with stubs for the routes you may
 
 
 ** - [x] npm install
-** - [] separate .env files
+** - [x] separate .env files
 ** - [] get API key, setup env files with key
 ** - [] 
 
