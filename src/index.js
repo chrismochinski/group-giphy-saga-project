@@ -17,6 +17,7 @@ function* rootSaga() {
 const sagaMiddleware = createSagaMiddleware();
 
 // unite reducers and create redux store
+// lasagna is an inside joke
 const lasagna = createStore(
     combineReducers({}),
     applyMiddleware(sagaMiddleware, logger),
