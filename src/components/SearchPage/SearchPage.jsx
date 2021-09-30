@@ -6,10 +6,15 @@ function SearchPage(){
 
     const [newSearch, setNewSearch] = useState('');
 
+    const handleSearch = () => {
+        setNewSearch({ newSearch })
+    }
+
     const addNewSearch = (event) => {
         event.preventDefault();
-        console.log('New search: ', newSearch);
+        console.log( 'New search: ', newSearch );
         dispatchEvent({ type: 'FETCH_SEARCH', payload: newSearch })
+        setNewSearch('');
     }
 
     return(
@@ -19,7 +24,7 @@ function SearchPage(){
                 required
                 placeholder='E.G.: Cats'
                 value={newSearch}
-                onChange={(event) => setNewSearch(event.target.value)}
+                onChange={(event) => handleSearch(event.target.value)}
             /><br />
             <button type='submit'>Search!</button>
         </form>
@@ -29,4 +34,4 @@ function SearchPage(){
     )
 }
 
-export default
+export default SearchPage;
