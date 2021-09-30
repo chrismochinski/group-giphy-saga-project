@@ -1,18 +1,21 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function SearchPage(){
 
     const [newSearch, setNewSearch] = useState('');
+    const dispatch = useDispatch();
 
-    const handleSearch = () => {
-        setNewSearch({ newSearch })
-    }
+    // const handleSearch = () => {
+    //     setNewSearch({ newSearch })
+    // }
 
     const addNewSearch = (event) => {
         event.preventDefault();
+
         console.log( 'New search: ', newSearch );
-        dispatchEvent({ type: 'FETCH_SEARCH', payload: newSearch })
+        dispatch({ type: 'FETCH_SEARCH', payload: newSearch })
         setNewSearch('');
     }
 
@@ -23,7 +26,7 @@ function SearchPage(){
                 required
                 placeholder='E.G.: Cats'
                 value={newSearch}
-                onChange={(event) => handleSearch(event.target.value)}
+                onChange={(event) => setNewSearch(event.target.value)}
             /><br />
             <button type='submit'>Search!</button>
         </form>
