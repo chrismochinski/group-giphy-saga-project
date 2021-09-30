@@ -68,16 +68,35 @@ You are given two router modules on the server with stubs for the routes you may
     - User should be able to delete/remove an existing category
 
 
-- [] get API key, setup env files (each)
-- [] import redux-logger (each)
-- [] import logger in index.js (ONE PERSON)
-- [] search form (Giphy search API)
+** - [x] npm install
+** - [] separate .env files
+** - [] get API key, setup env files with key
+** - [] 
+
+- [x] A bazillion imports in index.js (ONE PERSON)
 - [] get Giphy search endpoint 
 
+- [] DATABASE -
+    - [] populate (each)
+    - [] create new Table - "favorites"
 - [] check get route? complete?
 
-- [] POST route - component
 - [] POST route - index.js
 - [] PUT route - component
 - [] PUT route - index.js
+
+- [] category.router.js - get route okay?
+
+- [] favorite.router.js 
+    - [] GET route finish
+    - [] POST route finish
+    - [] DELETE route finish
+    - [] PUT route finish
+
+- [] **FORM component: GiphyForm.jsx**
+    - [] POST ROUTE
+        - [] inputs and buttons
+        - [] headers & info
+
+- [] FAVORITE (PUT route client side)
 
