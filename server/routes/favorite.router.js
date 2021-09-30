@@ -32,8 +32,9 @@ router.post('/', (req, res) => {
 router.put('/:favId', (req, res) => {
   // req.body should contain a category_id to add to this favorite image
   
-  const queryText = `UPDATE "favorites SET `;
-  pool.query(queryText).then(() => {
+  const queryText = `UPDATE "favorites" SET "category_id" = $2 WHERE "id" = $1;`;
+  const queryValues = [req.params.favId, req.body.category_id];
+  pool.query(queryText, queryValues).then(() => {
     res.sendStatus(200);
   }).catch(error => {
     console.log('Whoopsies...', error);
@@ -43,8 +44,8 @@ router.put('/:favId', (req, res) => {
 
 // delete a favorite
 router.delete('/:favId', (req, res) => {
-  const queryText = '';
-  pool.query(queryText).then(() => {
+  const queryText = `DELETE FROM "favorites" WHERE "id"= $1;`;
+  pool.query(queryText, [req.params.id]).then(() => {
     res.sendStatus(200);
   }).catch(error => {
     console.log('Whoopsy-daisies...', error);
