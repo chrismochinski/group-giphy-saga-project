@@ -12,6 +12,9 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 function* rootSaga() {
     yield takeEvery('FETCH_SEARCH', fetchSearch) //  1. receive from client side
+    yield takeEvery('FETCH_FAVORITES', fetchFavorites) // returns a list of favorites
+    yield takeEvery('ADD_FAVORITE', newFavorite)
+    yield takeEvery('CHANGE_FAVORITE', changeFavorite) 
 }
 
 
@@ -31,6 +34,38 @@ function* fetchSearch (newSearch) {
         console.log('uhoh:', uhoh)
     }
 } 
+
+function* fetchFavorites() {
+    try{
+        const favoriteResponse = yield axios.get('/api/favorite'); 
+        yield put({type: 'SET_LIST', payload: favoriteResponse.data});
+    }
+    catch (error) {
+        console.log('wah wah wawawaaaaaaaaaaaaaah', error);
+    }
+}
+
+function* changeFavorite(action) {
+    //rough outline, likely needs tweaking
+    try {
+        yield axios.put(`/api/favorite/${action.payload.id}`, action.payload.newCategory)
+        yield put({type: 'FETCH_FAVORITES'});
+    }
+    catch(error) {
+        console.log('error', error);
+    }
+}
+
+function* newFavorite(action) {
+    try {
+        yield axios.post('/api/favorite/', action.payload);
+        console.log('added new favorite');
+        yield put({type: 'ADD_FAVORITE'});
+    }
+    catch(error) {
+        console.log('error', error);
+    }
+}
 
 // 3. receive from above (master reducer):
 const gifReducer = (state = [], action) => {
