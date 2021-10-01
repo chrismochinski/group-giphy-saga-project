@@ -1,15 +1,18 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SearchPage() {
+
+    const gifResponse = useSelector(store => store.gifReducer);
+    console.log('gifResponse is:', gifResponse)
 
     const [newSearch, setNewSearch] = useState('');
     const dispatch = useDispatch();
 
-    // const handleSearch = () => {
-    //     setNewSearch({ newSearch })
-    // }
+    const handleSearch = (event) => {
+        setNewSearch(newSearch)
+    }
 
     const addNewSearch = (event) => {
         event.preventDefault();
@@ -18,6 +21,8 @@ function SearchPage() {
         dispatch({ type: 'FETCH_SEARCH', payload: newSearch })
         setNewSearch('');
     }
+    //TODO MAP THRU 10 GIPHY RESPONSES
+
 
     return (
         <>
@@ -31,7 +36,25 @@ function SearchPage() {
                 <button type='submit'>Search!</button>
             </form>
             <h1>Here are your Gifs:</h1>
-            <img src={newSearch}></img>
+
+            {/* <h2>{JSON.stringify(gifResponse)}</h2> */}
+            <ul>
+                {gifResponse.map((gifItem) => (
+                    <div className="gifListItem">
+                        <li>
+                            {gifItem.id}
+                        </li>
+                        <li key={gifItem.id}>
+
+                            <img src={gifItem.images.downsized_medium.url} />
+                            <button>Favorite</button>
+
+                        </li>
+                    </div>
+                ))}
+
+            </ul>
+            {/* <img src={gifResponse.downsized_medium}></img> */}
         </>
     )
 }
