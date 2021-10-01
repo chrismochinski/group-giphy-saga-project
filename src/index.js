@@ -18,17 +18,17 @@ function* rootSaga() {
 // 2. receive search from rootSaga above
 function* fetchSearch (newSearch) {
     try {
-        yield console.log('searching inside index.js... action:', newSearch)
-        const giphyResponse = yield axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&limit=10&offset=0&rating=g&lang=en&q=${newSearch}`)
+        console.log(newSearch);
+        const giphyResponse = yield axios.get(`/linking/${newSearch.payload}`)
 
-        yield console.log('giphyResponse is:', giphyResponse);
-        yield console.log('giphyResponse.data:', giphyResponse.data);
-        yield console.log('giphyResponse.data.data:', giphyResponse.data.data);
-        yield console.log('giphyResponse.data.data.image_original_url:', giphyResponse.data.data.image_original_url);
+        // yield console.log('giphyResponse is:', giphyResponse);
+        // yield console.log('giphyResponse.data:', giphyResponse.data);
+        // yield console.log('giphyResponse.data.data:', giphyResponse.data.data);
+        // yield console.log('giphyResponse.data.data.image_original_url:', giphyResponse.data.data.image_original_url);
         
-        yield put({ type: 'SET_LIST', payload: giphyResponse.data });
+        //yield put({ type: 'SET_LIST', payload: giphyResponse.data });
     } catch (uhoh) {
-        console.log('uhoh:', uhoh)
+        console.log('uhoh:', uhoh);
     }
 } 
 

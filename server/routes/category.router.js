@@ -4,6 +4,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+  console.log(req.params);
   // return all categories
   const queryText = `SELECT * FROM category ORDER BY name ASC`;
   pool
