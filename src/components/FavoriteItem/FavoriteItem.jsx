@@ -30,4 +30,3 @@ function FavoriteItem({item}) {
 
 
 export default FavoriteItem
-
