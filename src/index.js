@@ -55,10 +55,10 @@ function* newFavorite(action) {
     try {
         yield axios.post('/api/favorite/', action.payload);
         console.log('added new favorite');
-        yield put({type: 'ADD_FAVORITE'});
+        yield put({type: 'FETCH_FAVORITE'});
     }
     catch(error) {
-        console.log('error', error);
+        console.log('error is this', error);
     }
 }
 
