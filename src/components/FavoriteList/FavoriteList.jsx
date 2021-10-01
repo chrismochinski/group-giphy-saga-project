@@ -1,7 +1,7 @@
 import React from 'react'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import FavoriteItem from '../FavoriteItem/FavoriteItem';
-
+import { useEffect } from 'react';
 
 function FavoriteList() {
 
