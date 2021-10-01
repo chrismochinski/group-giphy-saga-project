@@ -8,6 +8,11 @@ function SearchPage() {
     console.log('gifResponse is:', gifResponse)
 
     const [newSearch, setNewSearch] = useState('');
+
+    const [newFavoriteTitle, setNewFavoriteTitle] = useState('');
+    const [newFavoriteLink, setNewFavoriteLink] = useState('');
+
+
     const dispatch = useDispatch();
 
     const handleSearch = (event) => {
@@ -21,7 +26,17 @@ function SearchPage() {
         dispatch({ type: 'FETCH_SEARCH', payload: newSearch })
         setNewSearch('');
     }
-    //TODO MAP THRU 10 GIPHY RESPONSES
+  
+    const addFavorite = (gif) => {
+        console.log('in addFavorite!', gif)
+        console.log('gif.title:', gif.title)
+        console.log('url?:', gif.images.downsized_medium.url)
+        setNewFavoriteTitle(gif.title);
+        setNewFavoriteLink(gif.images.downsized_medium.url);
+        const newFavoriteObject = {title: newFavoriteTitle, link: newFavoriteLink};
+        console.log('newFavorite is now:', newFavoriteTitle, newFavoriteLink);
+        dispatch({ type: 'ADD_FAVORITE', payload: newFavoriteObject});
+    }
 
 
     return (
@@ -38,16 +53,14 @@ function SearchPage() {
             <h1>Here are your Gifs:</h1>
 
             {/* <h2>{JSON.stringify(gifResponse)}</h2> */}
+            
             <ul>
                 {gifResponse.map((gifItem) => (
                     <div className="gifListItem">
-                        <li>
-                            {gifItem.id}
-                        </li>
                         <li key={gifItem.id}>
 
                             <img src={gifItem.images.downsized_medium.url} />
-                            <button>Favorite</button>
+                            <button onClick={() => addFavorite(gifItem)}>Favorite</button>
 
                         </li>
                     </div>
